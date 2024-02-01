@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int solve(int n) {
+    if(n <= 2) {
+        return n;
+    }
+    
+    vector<int> knowDataArray(n + 1);
+    knowDataArray[0] = 0;
+    knowDataArray[1] = 1;
+    knowDataArray[2] = 2;
+    
+    for(int i = 3; i <= n; i++) {
+        knowDataArray[i] = knowDataArray[i - 1] + knowDataArray[i - 2];
+    }
+    
+    return knowDataArray[n];
+}
+
+int main() {
+    
+    int n;
+    cout<<"Enter n :- ";
+    cin>>n;
+    
+    int result = solve(n);
+    cout<<"Number of ways to climb stair is :- "<<result;
+    
+    return 0;
+}
