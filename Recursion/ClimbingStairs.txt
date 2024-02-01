@@ -1,0 +1,26 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int solve(int n) {
+    if(n < 0) return 0;
+    if(n == 0) return 1;
+    
+    // First way - 1 step
+    int oneStep = solve(n - 1);
+    // Second way - 2 step
+    int twoStep = solve(n - 2);
+    
+    return oneStep + twoStep;
+}
+
+int main() {
+    
+    int n;
+    cout<<"Enter n :- ";
+    cin>>n;
+    
+    int result = solve(n);
+    cout<<"Number of ways to climb stair is :- "<<result;
+    
+    return 0;
+}
