@@ -26,6 +26,7 @@ int main() {
     
     int result = solve(n);
     cout<<"Number of ways to climb stair is :- "<<result;
-    
+
+
     return 0;
 }
