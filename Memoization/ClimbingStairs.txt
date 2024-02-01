@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int solve(int n) {
+    vector<int> dp(45, -1);
+    
+    if(n < 0) return 0;
+    
+    if(dp[n] != -1) {
+        return dp[n];
+    }
+    
+    if(n == 0) return 1;
+    
+    // First way - 1 step
+    // Second way - 2 step
+    
+    return dp[n] = solve(n - 1) + solve(n - 2);
+    
+}
+
+int main() {
+    
+    int n;
+    cout<<"Enter n :- ";
+    cin>>n;
+    
+    int result = solve(n);
+    cout<<"Number of ways to climb stair is :- "<<result;
+    
+    return 0;
+}
