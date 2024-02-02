@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int robbHouse(vector<int> houseArray, int n) {
+    if(n == 1) return houseArray[0];
+    
+    vector<int> bottomUp(n + 1, 0);
+    // bottomUp[i] = max stolen money till i house
+    
+    // no house: i = 0;
+    bottomUp[0] = 0;
+    
+    // 1 house: i = 1;
+    bottomUp[1] = houseArray[0];
+    
+    for(int i = 2; i <= n; i++) {
+        int steal = houseArray[i - 1] + bottomUp[i - 2];
+        int skip = bottomUp[i - 1];
+        
+        bottomUp[i] = max(steal, skip);
+    }
+    
+    return bottomUp[n];
+}
+
+int main() {
+    
+    // Test Case 1
+    // vector<int> houseArray = {1, 2, 3, 1};
+    // Test Case 2
+    // vector<int> houseArray = {6, 7, 1, 3, 8, 2, 4};
+    // Test Case 3
+    vector<int> houseArray = {5, 3, 4, 11, 2};
+    int n = houseArray.size();
+    
+    int result = robbHouse(houseArray, n);
+    cout<<"Maximum robbed money is :- "<<result;
+    
+    return 0;
+}
