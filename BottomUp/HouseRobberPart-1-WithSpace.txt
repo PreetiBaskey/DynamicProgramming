@@ -24,7 +24,6 @@ int robbHouse(vector<int> houseArray, int n) {
 }
 
 int main() {
-    
     // Test Case 1
     // vector<int> houseArray = {1, 2, 3, 1};
     // Test Case 2
