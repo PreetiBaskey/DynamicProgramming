@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+
+ll solve(int idx, vector<int> &arr, bool flag, int n) {
+    if(idx >= n) {
+        return 0;
+    }
+    
+    ll skip = solve(idx + 1, arr, flag, n);
+    
+    ll val = arr[idx];
+    if(flag == false) {
+        val = -val;
+    }
+    
+    ll take = solve(idx + 1, arr, !flag, n) + val;
+    
+    return max(skip, take);
+}
+
+int main() {
+    
+    vector<int> arr = {4, 2, 5, 3};
+    int n = arr.size();
+    
+    ll result = solve(0, arr, true, n); //0 = even index, true: +
+    cout<<"Maximum alternating subsequence sum is :- "<<result;
+    
+    return 0;
+}
