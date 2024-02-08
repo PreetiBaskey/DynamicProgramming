@@ -11,7 +11,7 @@ int fib(int n) {
 int main() {
     
     int n;
-    cout<<"Enter n :- ";
+    cout<<"Enter value of n :- ";
     cin>>n;
     
     int result = fib(n);
