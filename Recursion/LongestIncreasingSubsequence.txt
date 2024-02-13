@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int solve(vector<int> &arr, int idx, int pidx, int n) {
+    if(idx >= n) {
+        return 0;
+    }
+    //For taking the idx item/element
+    int take = 0;
+    if(pidx == -1 || arr[pidx] < arr[idx]) {
+        take = 1 + solve(arr, idx + 1, idx, n);
+    }
+    //For skipping the idx item/element
+    int skip = solve(arr, idx + 1, pidx, n);
+    
+    return max(take, skip);
+}
+
+int main() {
+    
+    vector<int> arr = {0, 1, 0, 3, 2, 3};
+    int n = arr.size();
+    
+    int result = solve(arr, 0, -1, n);
+    cout<<"Longest increasing subsequence is :- "<<result;
+    
+    return 0;
+}
