@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int solve(vector<vector<int>> &pair, int n, int idx, int pidx) {
+    if(idx >= n) {
+        return 0;
+    }
+    
+    //Adding data for adding
+    int take = 0;
+    if(pidx == -1 || pair[pidx][1] < pair[idx][0]) {
+        take = 1 + solve(pair, n, idx + 1, idx);
+    }
+    
+    //Skipping data for not adding
+    int skip = solve(pair, n, idx + 1, pidx);
+    
+    return max(take, skip);
+}
+
+int main() {
+    
+    vector<vector<int>> pair = {{1, 2,}, {7, 8}, {4, 5}};
+    int n = pair.size();
+    
+    ///Sorting collection of paired data
+    sort(begin(pair), end(pair));
+    int result = solve(pair, n, 0, -1);
+    cout<<"Maximum Length of Pair Chain is :- "<<result;
+    
+    return 0;
+}
