@@ -1,0 +1,37 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<vector<int>> dp(2501, vector<int>(2501, -1));
+
+int solve(vector<int> &arr, int n, int idx, int pidx) {
+    if(idx >= n) {
+        return 0;
+    }
+    
+    if(pidx != -1 && dp[idx][pidx] != -1) {
+        return dp[idx][pidx];
+    }
+    
+    int take = 0;
+    if(pidx == -1 || arr[idx] > arr[pidx]) {
+        take = 1 + solve(arr, n, idx + 1, idx);
+    }
+    int skip = solve(arr, n, idx + 1, pidx);
+    
+    if(pidx != -1) {
+        dp[idx][pidx] = max(take, skip);
+    }
+    
+    return max(take, skip);
+}
+ 
+int main() {
+    
+    vector<int> arr = {0, 1, 0, 3, 2, 3};
+    int n = arr.size();
+    
+    int result = solve(arr, n, 0, -1);
+    cout<<"Maximum increasing subsequence sum is :- "<<result;
+    
+    return 0;
+}
