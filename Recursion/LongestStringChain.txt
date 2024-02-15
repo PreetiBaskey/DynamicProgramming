@@ -1,0 +1,56 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+bool checkPredecessor(string pidx, string idx) {
+    int i, j;
+    for(i = 0, j = 0; i < pidx.length(), j < idx.length(); j++) {
+        if(pidx[i] == idx[j]) {
+            i++;
+        }
+    }
+    
+    return i == pidx.length();
+}
+
+int solve(vector<string> &chain, int n, int pidx, int idx) {
+    if(idx == n) {
+        return 0;
+    }
+    
+    int take = 0;
+    if(pidx == -1 || ((chain[idx].length() - chain[pidx].length() == 1) && checkPredecessor(chain[pidx], chain[idx]))) {
+        take = 1 + solve(chain, n, idx, idx + 1);
+    }
+    
+    int skip = solve(chain, n, pidx, idx + 1);
+    
+    return max(take, skip);
+}
+
+bool compare(string &s1,string &s2)
+{
+    return s1.size() < s2.size();
+}
+
+int main() {
+    
+    // Test Case 1
+    // vector<string> chain = {"a", "b", "ba", "bca"};
+    
+    // Test Case 2
+    // vector<string> chain = {"abcd", "abxcd", "a", "ab", "abc"};
+    
+    //Test Case 3
+    vector<string> chain = {"xbc","pcxbcf","xb","cxbc","pcxbc"};
+    
+    // Test Case 4
+    // vector<string> chain = {"abcd","dbqca"};
+    
+    int n = chain.size();
+    
+    sort(begin(chain), end(chain), compare);
+    int result = solve(chain, n, -1, 0);
+    cout<<"Longest string chain length is :- "<<result;
+    
+    return 0;
+}
