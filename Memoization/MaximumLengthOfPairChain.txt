@@ -1,0 +1,37 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<vector<int>> dp(1001, vector<int>(1001, -1));
+
+int solve(vector<vector<int>> &chain, int n, int idx, int pidx) {
+    if(idx >= n) {
+        return 0;
+    }
+    
+    if(pidx != -1 && dp[pidx][idx] != -1) {
+        return dp[pidx][idx];
+    }
+    
+    int take = 0;
+    if(pidx == -1 || chain[pidx][1] < chain[idx][0]) {
+        take = 1 + solve(chain, n, idx + 1, idx);
+    }
+    int skip = solve(chain, n, idx + 1, pidx);
+    
+    if(pidx != -1) {
+        dp[pidx][idx] = max(take, skip);
+    }
+    
+    return max(take, skip);
+}
+
+int main() {
+    
+    vector<vector<int>> chain = {{1, 2}, {7, 8}, {4, 5}};
+    int n = chain.size();
+    sort(begin(chain), end(chain));
+    int result = solve(chain, n, 0, -1);
+    cout<<"Maximum length of pair chain :- "<<result;
+    
+    return 0;
+}
