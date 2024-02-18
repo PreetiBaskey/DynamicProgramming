@@ -33,7 +33,6 @@ bool compare(string &s1,string &s2)
 }
 
 int main() {
-    
     // Test Case 1
     // vector<string> chain = {"a", "b", "ba", "bca"};
     
