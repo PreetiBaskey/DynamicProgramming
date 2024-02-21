@@ -5,7 +5,8 @@ int solve(vector<vector<int>> &pair, int n, int idx, int pidx) {
     if(idx >= n) {
         return 0;
     }
-    
+
+
     //Adding data for adding
     int take = 0;
     if(pidx == -1 || pair[pidx][1] < pair[idx][0]) {
