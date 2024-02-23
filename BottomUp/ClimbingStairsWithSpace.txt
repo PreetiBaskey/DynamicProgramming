@@ -6,6 +6,7 @@ int solve(int n) {
         return n;
     }
 
+
     vector<int> knowDataArray(n + 1);
     knowDataArray[0] = 0;
     knowDataArray[1] = 1;
