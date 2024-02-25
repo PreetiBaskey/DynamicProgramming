@@ -2,6 +2,7 @@
 using namespace std;
  
 int n = 2, m = 3, k = 1;
+int MOD = 1e9 + 7;
 
 int solve(int idx, int searchCost, int maxValueSoFar) {
     if(idx == n) {
@@ -14,14 +15,14 @@ int solve(int idx, int searchCost, int maxValueSoFar) {
     int result = 0;
     for(int i = 1; i <= m; i++) {
         if(i > maxValueSoFar) {
-            result += solve(idx + 1, searchCost + 1, i);
+            result += (solve(idx + 1, searchCost + 1, i)) % MOD;
         }
         else {
-            result += solve(idx + 1, searchCost, maxValueSoFar);
+            result += (solve(idx + 1, searchCost, maxValueSoFar)) % MOD;
         }
     }
     
-    return result;
+    return result % MOD;
 }
 
 int main() {
