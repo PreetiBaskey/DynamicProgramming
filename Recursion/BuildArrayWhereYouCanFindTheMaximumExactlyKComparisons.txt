@@ -27,7 +27,7 @@ int solve(int idx, int searchCost, int maxValueSoFar) {
 
 int main() {
     
-    int result = solve(0, 0, -1);
+    int result = solve(0, 0, 0);
     cout<<"Maximum k comparision is :- "<<result;
     
     return 0;
