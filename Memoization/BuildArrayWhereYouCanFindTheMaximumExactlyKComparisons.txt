@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+int n = 2, m = 3, k = 1;
+int MOD = 1e9 + 7;
+vector<vector<vector<int>>> dp(51, vector<vector<int>>(51, vector<int>(101, -1)));
+
+int solve(int idx, int searchCost, int maxValueSoFar) {
+    if(idx == n) {
+        if(searchCost == k) {
+            return 1;
+        }
+        return 0;
+    }
+    
+    if(dp[idx][searchCost][maxValueSoFar] != -1) {
+        return dp[idx][searchCost][maxValueSoFar];
+    }
+    
+    int result = 0;
+    for(int i = 1; i <= m; i++) {
+        if(i > maxValueSoFar) {
+            result += (solve(idx + 1, searchCost + 1, i)) % MOD;
+        }
+        else {
+            result += (solve(idx + 1, searchCost, maxValueSoFar)) % MOD;
+        }
+    }
+    
+    return dp[idx][searchCost][maxValueSoFar] = result;
+}
+
+int main() {
+    
+    int result = solve(0, 0, 0);
+    cout<<"Maximum k comparision is :- "<<result;
+    
+    return 0;
+}
