@@ -1,6 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
- 
+
+
 int n = 2, m = 3, k = 1;
 int MOD = 1e9 + 7;
 vector<vector<vector<int>>> dp(51, vector<vector<int>>(51, vector<int>(101, -1)));
